@@ -1,24 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState, useContext } from "react";
+import { Routes, Route } from "react-router-dom";
+import "./App.css"
+import NavBar from "./NavBar";
+import Login from "./Login";
+import SignUpForm from "./SignUpForm";
+import User from "./User";
+import UserContext from "./context/ContextUser";
 
 function App() {
+  const [user, setUser] = useState(null);
+
+
+  useEffect(() => {
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+
+  }, []);
+
+
+
+  if (!user) return <Login onLogin={setUser} />;
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <>
+      <UserContext.Provider value={[user, setUser]}>
+        <NavBar
+        //  user={user} setUser={setUser}
+        />
+
+        <main>
+
+          <Routes>
+            <Route exact path="/me" element={<User
+            // user={user} setUser={setUser}
+            />}>
+
+            </Route>
+            <Route exact path="/signup" element={<SignUpForm
+            // onLogin={setUser}
+            />}>
+
+            </Route>
+
+
+          </Routes>
+        </main>
+      </UserContext.Provider>
+    </>
   );
 }
 

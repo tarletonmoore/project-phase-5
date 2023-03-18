@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   delete "/questions", to: "questions#destroy"
   
   resources :movies
-  # resources :users
+  resources :users
   resources :questions
   resources :quiz_questions
 resources :quizzes
