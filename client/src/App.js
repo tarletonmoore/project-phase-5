@@ -6,10 +6,13 @@ import Login from "./Login";
 import SignUpForm from "./SignUpForm";
 import User from "./User";
 import UserContext from "./context/ContextUser";
+import MovieList from "./MovieList";
+import NewMovie from "./NewMovie";
+import EditAvatar from "./EditAvatar";
 
 function App() {
   const [user, setUser] = useState(null);
-
+  const [movies, setMovies] = useState([])
 
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -20,7 +23,16 @@ function App() {
 
   }, []);
 
+  useEffect(() => {
+    fetch("/movies")
+      .then((r) => r.json())
+      .then(setMovies);
+  }, []);
 
+  function handleAddMovie(newMovie) {
+
+    setMovies([...movies, newMovie]);
+  }
 
   if (!user) return <Login onLogin={setUser} />;
 
@@ -47,7 +59,21 @@ function App() {
             />}>
 
             </Route>
+            <Route exact path="/user/avatar" element={<EditAvatar
+            // onLogin={setUser}
+            />}>
+            </Route>
 
+            <Route exact path="/new" element={<NewMovie user={user}
+              onAddMovie={handleAddMovie}
+            />}>
+
+            </Route>
+            <Route exact path="/movies" element={<MovieList movies={movies} setMovies={setMovies}
+            // user={user} 
+            />}>
+
+            </Route>
 
           </Routes>
         </main>

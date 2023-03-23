@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
   delete "/logout", to: "sessions#destroy"
   delete "/questions", to: "questions#destroy"
-  
-  resources :movies
+  post "/user/avatar", to: "users#update_avatar"
+  # resources :movies
+  get "/movies", to: "movies#index"
   resources :users
   resources :questions
   resources :quiz_questions

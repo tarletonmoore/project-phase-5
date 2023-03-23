@@ -23,7 +23,17 @@ function NavBar() {
 
     return (
         <div>
+            <NavLink
+                to="/movies"
+                style={linkStyles}>
+                <button> Movies</button>
+            </NavLink>
 
+            <NavLink
+                to="/new"
+                style={linkStyles}>
+                <button> New Movie</button>
+            </NavLink>
             <NavLink to="me"
                 style={linkStyles}>
                 <button>Profile</button>
@@ -32,6 +42,10 @@ function NavBar() {
                 <button onClick={handleLogoutClick}>
                     Logout
                 </button>
+            </NavLink>
+            <NavLink to="user/avatar"
+                style={linkStyles}>
+                <button>Change Profile Picture</button>
             </NavLink>
         </div>
     );
