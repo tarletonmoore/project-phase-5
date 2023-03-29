@@ -7,6 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 puts " Seeding spices..."
 
+User.delete_all
+Movie.delete_all
+Quiz.delete_all
+Question.delete_all
+QuizQuestion.delete_all
+
 tarleton = User.create!(username: "tarleton", password: "tarleton8000", bio: "Horror Fanatic!!!")
 jacob = User.create!(username: "jacob", password: "tarleton8000", bio: "80's horror fan")
 john = User.create!(username: "john", password: "tarleton8000", bio: "casual horror fan")

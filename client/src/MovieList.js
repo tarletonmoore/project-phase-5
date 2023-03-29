@@ -2,7 +2,7 @@ import React from "react";
 import Movie from "./Movie";
 
 
-function MovieList({ user, movies }) {
+function MovieList({ user, movies, quiz, setQuiz }) {
 
 
 
@@ -14,6 +14,7 @@ function MovieList({ user, movies }) {
                     <Movie key={movie.id}
                         movie={movie}
                         user={user}
+                        quiz={quiz} setQuiz={setQuiz}
 
                     />
 

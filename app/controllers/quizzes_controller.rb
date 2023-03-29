@@ -4,7 +4,7 @@ class QuizzesController < ApplicationController
   
 def index
 quizzes = Quiz.all
-render json: quizzes
+render json: quizzes, include: [:questions]
 end
 
     def new
@@ -29,6 +29,13 @@ end
     #     quiz.update(result: calculate_quiz_result)
     #   end
     # end
+
+    def show_movie_quizzes
+        movie = Movie.find(params[:id])
+        quizzes = movie.quizzes.includes(:questions)
+    
+        render json: quizzes.as_json(include: :questions)
+      end
 
     def show
         movie = Movie.find(params[:id])

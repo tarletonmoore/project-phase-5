@@ -9,10 +9,20 @@ import UserContext from "./context/ContextUser";
 import MovieList from "./MovieList";
 import NewMovie from "./NewMovie";
 import EditAvatar from "./EditAvatar";
+import Quiz from "./Quiz";
 
 function App() {
   const [user, setUser] = useState(null);
   const [movies, setMovies] = useState([])
+  const [quiz, setQuiz] = useState(null);
+
+  // const [quiz, setQuiz] = useState([]);
+
+  useEffect(() => {
+    fetch("/quizzes")
+      .then((r) => r.json())
+      .then(setQuiz);
+  }, []);
 
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -23,10 +33,18 @@ function App() {
 
   }, []);
 
+  // useEffect(() => {
+  //   fetch("/movies")
+  //     .then((r) => r.json())
+  //     .then(setMovies);
+  // }, []);
+
+
   useEffect(() => {
-    fetch("/movies")
+    fetch(`/movies`)
       .then((r) => r.json())
-      .then(setMovies);
+      .then(setMovies)
+    // .then(setQuiz);
   }, []);
 
   function handleAddMovie(newMovie) {
@@ -69,10 +87,18 @@ function App() {
             />}>
 
             </Route>
-            <Route exact path="/movies" element={<MovieList movies={movies} setMovies={setMovies}
+            <Route exact path="/movies" element={<MovieList
+              movies={movies} setMovies={setMovies}
+              quiz={quiz} setQuiz={setQuiz}
             // user={user} 
             />}>
 
+            </Route>
+
+            <Route exact path="/quizzes" element={<Quiz
+              quiz={quiz} setQuiz={setQuiz}
+            // user={user} setUser={setUser}
+            />}>
             </Route>
 
           </Routes>

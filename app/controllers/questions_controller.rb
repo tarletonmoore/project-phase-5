@@ -2,14 +2,18 @@ class QuestionsController < ApplicationController
     skip_before_action :authorized, only: :create
   
     def index
-      questions = Question.all
-      render json: questions, include: [:movie, :quiz]
+    #   questions = Question.all
+    #   render json: questions, include: [:movie, :quiz]
+    
+        questions = Question.includes(:quiz).all
+        render json: questions, include: [:quiz]
+      
     end
   
     def show
         question = Question.find_by(id: params[:id])
         if question
-        render json: question, include: :movie
+        render json: question, include: [:movie, :quiz]
         else
             render json: { error: "Review not found" }, status: :not_found
         end

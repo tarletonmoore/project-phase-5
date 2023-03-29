@@ -47,6 +47,10 @@ function NavBar() {
                 style={linkStyles}>
                 <button>Change Profile Picture</button>
             </NavLink>
+            <NavLink to="quizzes"
+                style={linkStyles}>
+                <button>Quizzes</button>
+            </NavLink>
         </div>
     );
 }
