@@ -1,46 +1,48 @@
-import { useEffect, useState } from "react";
-import React from "react";
+import React, { useState } from "react";
+import StartQuizButton from "./StartQuizButton";
 import Quiz from "./Quiz";
 
-// function Movie({ movie, user }) {
-//     const [quiz, setQuiz] = useState([]);
+function Movie({ movie, user, quiz, setQuiz, questions }) {
+    const [quizStarted, setQuizStarted] = useState(false);
 
-//     useEffect(() => {
-//         fetch("/quizzes")
-//             .then((r) => r.json())
-//             .then(setQuiz);
-//     }, []);
+    function generateQuestionsForMovie(movieId, questions) {
+        if (!questions || questions.length === 0) return [];
 
+        const questionsForMovie = questions.filter(
+            (q) =>
+                q.hasOwnProperty("movie") && q.movie.id === movieId
+        );
 
-//     return (
-//         <div>
-//             <h2>Movie: {movie.title}</h2>
-//             <p>Plot: {movie.plot}</p>
-//             <Quiz quiz={quiz} />
+        const shuffledQuestions = questionsForMovie.sort(
+            () => Math.random() - 0.5
+        );
+        return shuffledQuestions.slice(0, 5);
+    }
 
-//         </div>
-//     )
-// }
+    const movieQuestions = generateQuestionsForMovie(movie.id, questions);
 
-function Movie({ movie, user, quiz, setQuiz }) {
-    // const [quiz, setQuiz] = useState(null);
-
-    // useEffect(() => {
-    //     fetch(`/movies`)
-    //         .then((r) => r.json())
-    //         .then(setQuiz);
-    // }, [movie.id]);
+    if (!movieQuestions || movieQuestions.length === 0) {
+        return (
+            <div>
+                <h2>Movie: {movie.title}</h2>
+                <p>Plot: {movie.plot}</p>
+                <p>No questions available for this movie.</p>
+            </div>
+        );
+    }
 
     return (
         <div>
             <h2>Movie: {movie.title}</h2>
             <p>Plot: {movie.plot}</p>
-            {/* {quiz ? <Quiz quiz={quiz} setQuiz={setQuiz}
-            /> : <div>Loading quiz...</div>} */}
+            {quizStarted ? (
+                <Quiz questions={movieQuestions} />
+            ) : (
+                <StartQuizButton onStartQuiz={() => setQuizStarted(true)} />
+            )}
         </div>
     );
+
 }
 
-
-
-export default Movie
+export default Movie;

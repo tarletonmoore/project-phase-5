@@ -15,8 +15,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [movies, setMovies] = useState([])
   const [quiz, setQuiz] = useState(null);
-
-  // const [quiz, setQuiz] = useState([]);
+  const [questions, setQuestions] = useState([])
 
   useEffect(() => {
     fetch("/quizzes")
@@ -33,12 +32,11 @@ function App() {
 
   }, []);
 
-  // useEffect(() => {
-  //   fetch("/movies")
-  //     .then((r) => r.json())
-  //     .then(setMovies);
-  // }, []);
-
+  useEffect(() => {
+    fetch("/questions")
+      .then((r) => r.json())
+      .then(setQuestions);
+  }, []);
 
   useEffect(() => {
     fetch(`/movies`)
@@ -53,6 +51,7 @@ function App() {
   }
 
   if (!user) return <Login onLogin={setUser} />;
+
 
 
 
@@ -90,16 +89,17 @@ function App() {
             <Route exact path="/movies" element={<MovieList
               movies={movies} setMovies={setMovies}
               quiz={quiz} setQuiz={setQuiz}
+              questions={questions}
             // user={user} 
             />}>
 
             </Route>
 
-            <Route exact path="/quizzes" element={<Quiz
+            {/* <Route exact path="/quizzes" element={<Quiz
               quiz={quiz} setQuiz={setQuiz}
             // user={user} setUser={setUser}
             />}>
-            </Route>
+            </Route> */}
 
           </Routes>
         </main>

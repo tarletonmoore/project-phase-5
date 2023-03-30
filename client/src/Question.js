@@ -1,4 +1,3 @@
-// Question component
 import React, { useEffect, useState } from "react";
 
 function Question({ currentQuestion, onAnswered }) {
@@ -30,10 +29,10 @@ function Question({ currentQuestion, onAnswered }) {
 
 
     const { id, question, option_1, option_2, option_3, option_4 } = currentQuestion;
+
     console.log(currentQuestion)
     return (
         <div className="quiz">
-            <h1> Question {id}</h1>
             <h3>{question}</h3>
 
             <button onClick={() => handleOptionClick(currentQuestion.option_1, currentQuestion)}>{currentQuestion.option_1}</button>

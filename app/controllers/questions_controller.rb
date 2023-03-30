@@ -6,7 +6,7 @@ class QuestionsController < ApplicationController
     #   render json: questions, include: [:movie, :quiz]
     
         questions = Question.includes(:quiz).all
-        render json: questions, include: [:quiz]
+        render json: questions, include: [:quiz, :movie]
       
     end
   
