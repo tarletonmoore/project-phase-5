@@ -38,18 +38,20 @@ function NavBar() {
                 style={linkStyles}>
                 <button>Profile</button>
             </NavLink>
+
+            {/* <NavLink to="user/avatar"
+                style={linkStyles}>
+                <button>Change Profile Picture</button>
+            </NavLink> */}
+
+            <NavLink to="add_question"
+                style={linkStyles}>
+                <button>Add Question</button>
+            </NavLink>
             <NavLink>
                 <button onClick={handleLogoutClick}>
                     Logout
                 </button>
-            </NavLink>
-            <NavLink to="user/avatar"
-                style={linkStyles}>
-                <button>Change Profile Picture</button>
-            </NavLink>
-            <NavLink to="quizzes"
-                style={linkStyles}>
-                <button>Quizzes</button>
             </NavLink>
         </div>
     );

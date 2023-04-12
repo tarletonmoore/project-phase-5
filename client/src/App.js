@@ -10,6 +10,7 @@ import MovieList from "./MovieList";
 import NewMovie from "./NewMovie";
 import EditAvatar from "./EditAvatar";
 import Quiz from "./Quiz";
+import NewQuestion from "./NewQuestion";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -50,6 +51,29 @@ function App() {
     setMovies([...movies, newMovie]);
   }
 
+  function handleDeleteQuestion(id) {
+    const updatedQuestions = questions.filter((question) => question.id !== id);
+    setQuestions(updatedQuestions);
+  }
+
+  function handleUpdateQuestion(updatedQuestionObj) {
+    const updatedQuestions = questions.map((question) => {
+      if (question.id === updatedQuestionObj.id) {
+        return updatedQuestionObj;
+      } else {
+        return question;
+      }
+    });
+    setQuestions(updatedQuestions);
+  }
+
+  function handleAddQuestion(newQuestion) {
+
+    setQuestions([...questions, newQuestion]);
+  }
+
+
+
   if (!user) return <Login onLogin={setUser} />;
 
 
@@ -76,10 +100,10 @@ function App() {
             />}>
 
             </Route>
-            <Route exact path="/user/avatar" element={<EditAvatar
+            {/* <Route exact path="/user/avatar" element={<EditAvatar
             // onLogin={setUser}
             />}>
-            </Route>
+            </Route> */}
 
             <Route exact path="/new" element={<NewMovie user={user}
               onAddMovie={handleAddMovie}
@@ -95,11 +119,15 @@ function App() {
 
             </Route>
 
-            {/* <Route exact path="/quizzes" element={<Quiz
+            <Route exact path="/add_question" element={<NewQuestion
+              movies={movies} setMovies={setMovies}
               quiz={quiz} setQuiz={setQuiz}
-            // user={user} setUser={setUser}
+              questions={questions}
+              handleAddQuestion={handleAddQuestion}
+            // user={user} 
             />}>
-            </Route> */}
+
+            </Route>
 
           </Routes>
         </main>

@@ -4,7 +4,7 @@ class MoviesController < ApplicationController
 
     def index
       movies = Movie.all
-      render json: movies, include: :questions
+      render json: movies, include: :questions      
     end
 
 

@@ -6,6 +6,6 @@ class Movie < ApplicationRecord
 
 
     def random_questions
-        questions.order("RANDOM()").limit(5)
+        questions.order("RANDOM()").limit(3)
       end
 end

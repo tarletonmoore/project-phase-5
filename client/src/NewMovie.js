@@ -57,7 +57,6 @@ function NewMovie({
 
                 }
                 else { r.json().then((errorData) => setErrors(errorData.errors)); }
-                console.log(errors)
             });
 
     }

@@ -5,6 +5,7 @@ class QuestionSerializer < ActiveModel::Serializer
   
   belongs_to :movie
   has_many :quiz_questions
-  # has_many :quizzes, through: :quiz_questions
+  # belongs_to :quiz
+  has_many :quizzes, through: :quiz_questions, foreign_key: 'quiz_id'
 end
 
