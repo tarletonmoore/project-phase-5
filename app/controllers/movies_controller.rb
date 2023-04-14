@@ -2,22 +2,33 @@ class MoviesController < ApplicationController
     skip_before_action :authorized, only: :create
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
+    # def index
+    #   movies = Movie.all
+    #   render json: movies, include: :questions      
+    # end
+
     def index
-      movies = Movie.all
-      render json: movies, include: :questions      
-    end
-
-
-  
-    def show
-      movie = Movie.find(params[:id])
-      if movie
-         render json: movie
-         else
-            render json: { error: "movie not found" }, status: :not_found
-        
-    end
-  end
+        @movies = Movie.all.includes(:questions)
+        @movies = @movies.map do |movie|
+          movie.as_json.merge({ random_questions: movie.questions.sample(3) })
+        end
+        render json: @movies
+      end
+      
+      
+      
+      
+      def show
+        movie = Movie.find(params[:id])
+        render json: movie.as_json(include: :questions, methods: :random_questions)
+      end
+      
+    #   def random_questions
+    #     @movie = Movie.find(params[:id])
+    #     questions = @movie.random_questions(5) 
+    #     render json: questions
+    #   end
+      
 
   def create
         

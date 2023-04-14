@@ -1,27 +1,51 @@
+// import React from "react";
+// import Movie from "./Movie";
+
+
+// function MovieList({ user, movies, quiz, setQuiz, questions }) {
+
+//     console.log(movies)
+
+//     return (
+//         <div>
+
+//             {movies.map(movie => (
+//                 <Movie
+//                     key={movie.id}
+//                     movie={movie}
+//                     user={user}
+//                     quiz={quiz}
+//                     setQuiz={setQuiz}
+//                     questions={questions}
+//                 />
+//             ))}
+//         </div>
+//     );
+// }
+
+
+// export default MovieList;
+
+
 import React from "react";
 import Movie from "./Movie";
 
+function MovieList({ movies }) {
+    console.log(movies);
 
-function MovieList({ user, movies, quiz, setQuiz, questions }) {
-
-
+    if (!Array.isArray(movies)) {
+        return <div>No movies to display</div>;
+    }
 
     return (
         <div>
-
-            {movies.map(movie => (
-                <Movie
-                    key={movie.id}
-                    movie={movie}
-                    user={user}
-                    quiz={quiz}
-                    setQuiz={setQuiz}
-                    questions={questions}
-                />
+            {movies.map((movie) => (
+                <Movie key={movie.id} movie={movie} randomQuestions={movie.random_questions || []} />
             ))}
         </div>
     );
 }
 
-
 export default MovieList;
+
+
