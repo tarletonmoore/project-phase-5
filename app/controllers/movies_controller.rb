@@ -10,7 +10,7 @@ class MoviesController < ApplicationController
     def index
         @movies = Movie.all.includes(:questions)
         @movies = @movies.map do |movie|
-          movie.as_json.merge({ random_questions: movie.questions.sample(3) })
+          movie.as_json.merge({ random_questions: movie.questions.sample(5) })
         end
         render json: @movies
       end

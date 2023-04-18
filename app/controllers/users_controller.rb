@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     skip_before_action :authorized, only: [:create]
+    # before_action :authorized, only: [:destroy]
   
     def index
       users = User.all
@@ -13,6 +14,8 @@ class UsersController < ApplicationController
       if user.valid?
         session[:user_id] = user.id
         render json: user, methods: [:avatar], status: :created
+        # redirect_to '/movies'
+
       else
         render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
       end
@@ -37,6 +40,23 @@ class UsersController < ApplicationController
           render json: { errors: ["Unable to update avatar"] }, status: :unprocessable_entity      
         end
       end
+      
+    #   def destroy
+    #     current_user = User.find_by(id: session[:user_id])
+    #     if current_user 
+    #       current_user.destroy
+    #       session[:user_id] = nil
+    #       redirect_to logout_path
+    #     else
+    #       render json: {errors: ["Not Authorized"]}, status: :unauthorized
+    #     end
+    #   end
+    def destroy
+        current_user = User.find_by(id: session[:user_id])
+          current_user.destroy
+        session.delete(:user_id)
+      end
+      
       
   
     private

@@ -15,6 +15,6 @@ class SessionsController < ApplicationController
         
         session.delete :user_id
         head :no_content
-                 
+                redirect_to login_path 
       end  
 end
