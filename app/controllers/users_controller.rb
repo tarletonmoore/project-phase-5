@@ -41,20 +41,27 @@ class UsersController < ApplicationController
         end
       end
       
-    #   def destroy
-    #     current_user = User.find_by(id: session[:user_id])
-    #     if current_user 
-    #       current_user.destroy
-    #       session[:user_id] = nil
-    #       redirect_to logout_path
-    #     else
-    #       render json: {errors: ["Not Authorized"]}, status: :unauthorized
-    #     end
-    #   end
+      def update
+        current_user = User.find_by(id: session[:user_id])
+        if current_user
+          current_user.update(bio: params[:bio])
+          render json: current_user
+        else
+          render json: { errors: ["Not Authorized"] }, status: :unauthorized
+        end
+      end
+      
+
     def destroy
         current_user = User.find_by(id: session[:user_id])
+        if current_user
           current_user.destroy
         session.delete(:user_id)
+        
+        else
+        render json: {errors: ["Not Authorized"]}, status: :unauthorized    
+        
+        end
       end
       
       

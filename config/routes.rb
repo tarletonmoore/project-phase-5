@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   delete "/me", to: "users#destroy"
   delete "/questions", to: "questions#destroy"
   post "/user/avatar", to: "users#update_avatar"
+  patch "/me", to: "users#update"
   resources :movies
   # get "/movies", to: "movies#index"
   resources :users

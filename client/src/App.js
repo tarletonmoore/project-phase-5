@@ -56,16 +56,20 @@ function App() {
     setQuestions(updatedQuestions);
   }
 
-  function handleUpdateQuestion(updatedQuestionObj) {
-    const updatedQuestions = questions.map((question) => {
-      if (question.id === updatedQuestionObj.id) {
-        return updatedQuestionObj;
-      } else {
-        return question;
-      }
-    });
-    setQuestions(updatedQuestions);
+  function handleUpdateUser(updatedUserObj) {
+    if (Array.isArray(user)) {
+      const updatedUsers = user.map((u) => {
+        if (u.id === updatedUserObj.id) {
+          return updatedUserObj;
+        } else {
+          return u;
+        }
+      });
+      setUser(updatedUsers);
+    }
   }
+
+
 
   function handleAddQuestion(newQuestion) {
 
@@ -91,12 +95,10 @@ function App() {
 
           <Routes>
             <Route exact path="/me" element={<User
-            // user={user} setUser={setUser}
-            />}>
+              handleUpdateUser={handleUpdateUser} />}>
 
             </Route>
             <Route exact path="/signup" element={<SignUpForm
-            // onLogin={setUser}
             />}>
 
             </Route>
