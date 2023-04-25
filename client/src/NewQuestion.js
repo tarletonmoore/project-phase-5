@@ -211,7 +211,7 @@ function NewQuestion({ movies, handleAddQuestion, questions }) {
 
     console.log(questions)
     return (
-        <div>
+        <div className="newquestion">
             <h2>Add a New Question</h2>
             <form onSubmit={handleQuestionSubmit}>
                 <div>

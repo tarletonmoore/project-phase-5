@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./App.css"
 
 function Question({ currentQuestion, onAnswered }) {
     const [timeRemaining, setTimeRemaining] = useState(15);

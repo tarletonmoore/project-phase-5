@@ -29,8 +29,11 @@
 
 import React from "react";
 import Movie from "./Movie";
+import billy from "./image/billy.jpg"
+import "./App.css"
 
-function MovieList({ movies }) {
+
+function MovieList({ movies, handleQuizScore }) {
     console.log(movies);
 
     if (!Array.isArray(movies)) {
@@ -39,8 +42,10 @@ function MovieList({ movies }) {
 
     return (
         <div>
+            <img src={billy} alt="Billy" className="spin" width="120" height="150" />
+
             {movies.map((movie) => (
-                <Movie key={movie.id} movie={movie} randomQuestions={movie.random_questions || []} />
+                <Movie key={movie.id} movie={movie} handleQuizScore={handleQuizScore} randomQuestions={movie.random_questions || []} />
             ))}
         </div>
     );

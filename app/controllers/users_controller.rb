@@ -30,6 +30,13 @@ class UsersController < ApplicationController
         end
       end
 
+        # def show
+        #     current_user = User.find_by(id: session[:user_id])
+        #     @quiz_results = current_user.quiz_results.includes(:quiz)
+        #   render json: { user: current_user, quiz_results: @quiz_results }
+        # end
+      
+
       def update_avatar
         byebug
         current_user = User.find_by(id: session[:user_id])
@@ -64,7 +71,20 @@ class UsersController < ApplicationController
         end
       end
       
+    #   def quiz_results
+    #     current_user = User.find_by(id: session[:user_id])
+    #     quizzes = current_user.quizzes.includes(:questions)
+    #     results = quizzes.map do |quiz|
+    #       { id: quiz.id,  result: quiz.result }
+    #     end
+    #     render json: { results: results }
+    #   end
       
+    #   def quizzes
+    #     current_user = User.find_by(id: session[:user_id])
+    #     quizzes = current_user.quizzes
+    #     render json:
+    #   end
   
     private
   

@@ -6,6 +6,13 @@ def index
 quizzes = Quiz.all
 render json: quizzes, include: [:questions]
 end
+# def index
+#     current_user = User.find_by(id: session[:user_id])
+#     quizzes = current_user.quizzes.includes(:questions)
+#     quiz_results = current_user.quiz_results # get the quiz results for the current user
+#     render json: quizzes.as_json(include: { questions: { only: [:id, :question, :option_1, :option_2, :option_3, :option_4] }, quiz_results: { only: [:result] } })
+#   end
+  
 
     # def new
     #     movie = Movie.find(params[:movie_id])

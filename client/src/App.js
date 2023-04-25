@@ -17,6 +17,7 @@ function App() {
   const [movies, setMovies] = useState([])
   const [quiz, setQuiz] = useState(null);
   const [questions, setQuestions] = useState([])
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     fetch("/quizzes")
@@ -76,7 +77,9 @@ function App() {
     setQuestions([...questions, newQuestion]);
   }
 
-
+  function handleQuizScore(newScore) {
+    setScore(newScore);
+  }
 
   if (!user) return <Login onLogin={setUser} />;
 
@@ -95,7 +98,9 @@ function App() {
 
           <Routes>
             <Route exact path="/me" element={<User
-              handleUpdateUser={handleUpdateUser} />}>
+              handleUpdateUser={handleUpdateUser}
+              quizScore={score}
+            />}>
 
             </Route>
             <Route exact path="/signup" element={<SignUpForm
@@ -116,6 +121,7 @@ function App() {
               movies={movies} setMovies={setMovies}
               quiz={quiz} setQuiz={setQuiz}
               questions={questions}
+              handleQuizScore={handleQuizScore}
             // user={user} 
             />}>
 
