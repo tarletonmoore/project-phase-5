@@ -84,7 +84,7 @@ function SignUpForm(
             </section>
 
             {errors && errors.length > 0 && (
-                <ul style={{ color: "black" }}>
+                <ul style={{ color: "dark red" }}>
                     {errors.map((error) => (
                         <li key={error}>{error}</li>
                     ))}

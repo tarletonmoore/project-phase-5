@@ -42,7 +42,7 @@ function MovieList({ movies, handleQuizScore }) {
 
     return (
         <div>
-            <img src={billy} alt="Billy" className="spin" width="120" height="150" />
+            <img src={billy} alt="Billy" className="spinner" width="120" height="150" />
 
             {movies.map((movie) => (
                 <Movie key={movie.id} movie={movie} handleQuizScore={handleQuizScore} randomQuestions={movie.random_questions || []} />

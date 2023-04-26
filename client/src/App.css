@@ -17,6 +17,7 @@ p {
 .start-quiz-button {
   display: block;
   margin: 0 auto;
+  background: linear-gradient(to bottom right, red, darkred);
 }
 
 .newquestion {
@@ -27,14 +28,20 @@ p {
 
 input {
   margin: 10px;
+  background: linear-gradient(to bottom right, red, darkred);
+
 }
 
 select {
   margin: 10px;
+  background: linear-gradient(to bottom right, red, darkred);
+
 }
 
 textarea {
   margin: 10px;
+  background: linear-gradient(to bottom right, red, darkred);
+
 }
 
 img {margin: 40px;}
@@ -43,10 +50,44 @@ img {margin: 40px;}
 
 .quiz {
   padding-left: 20px;
-  margin-left: 15px;
+  margin-left: 15px;  
 }
 
-button {margin: 10px;}
+.quiz button {
+  background: linear-gradient(to bottom right, red, darkred);
+}
+
+
+button {margin: 10px;
+  background: linear-gradient(to bottom right, red, darkred);
+}
+
+.nav-button {
+  background: linear-gradient(to bottom right, red, darkred);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+  color: black;
+  border: none;
+  outline: none;
+  padding: 10px;
+  margin: 5px 3px 3px;
+  font-size: 16px;
+}
+
+.nav-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+.nav-active {
+  opacity: 0;
+  transition: opacity 5s ease-in-out;
+}
+
+.nav-active.active {
+  opacity: 1;
+}
+
+
 
 .App-logo {
   height: 40vmin;
@@ -84,22 +125,24 @@ button {margin: 10px;}
 }
 
 
-.spin {
-  animation: spin 2s linear infinite;
+.spinner {
+  animation-name: spinner;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
-@keyframes spin {
+@keyframes spinner {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-} 
- .spin {
-  animation: spin 2s linear infinite;
-  transform: scale(-1, 1);
 }
+
+
+
 
 /* @keyframes spin {
   from {
