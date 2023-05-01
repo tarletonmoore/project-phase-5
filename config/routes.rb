@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   delete "/questions", to: "questions#destroy"
   post "/user/avatar", to: "users#update_avatar"
   patch "/me", to: "users#update"
-  get "/me/quiz_results", to: "users#quiz_results"
+
+  get '/users/:id/quiz_scores', to: 'quizzes#quiz_scores'
+
   resources :movies
   # get "/movies", to: "movies#index"
   resources :users

@@ -38,7 +38,7 @@ class UsersController < ApplicationController
       
 
       def update_avatar
-        byebug
+        # byebug
         current_user = User.find_by(id: session[:user_id])
         if current_user
           current_user.avatar.attach(params[:avatar])
@@ -80,11 +80,7 @@ class UsersController < ApplicationController
     #     render json: { results: results }
     #   end
       
-    #   def quizzes
-    #     current_user = User.find_by(id: session[:user_id])
-    #     quizzes = current_user.quizzes
-    #     render json:
-    #   end
+   
   
     private
   

@@ -19,6 +19,36 @@ p {
   margin: 0 auto;
   background: linear-gradient(to bottom right, red, darkred);
 }
+.pixelate {
+  animation: pixelate 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes pixelate {
+  0% {
+      transform: scale(1);
+  }
+  100% {
+      transform: scale(0);
+  }
+}
+
+/* .disintegrate {
+  animation-name: disintegrate;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes disintegrate {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+} */
+
 
 .newquestion {
   padding-left: 15px;

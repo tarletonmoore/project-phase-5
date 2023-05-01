@@ -94,6 +94,12 @@ end
         end
       end
   
+      def quiz_scores
+        current_user = User.find_by(id: session[:user_id])
+       quiz_scores = current_user.quizzes.pluck(:result)
+       render json: { quiz_scores: quiz_scores }
+   end
+
     private
   
     def find_quiz

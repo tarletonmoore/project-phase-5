@@ -226,7 +226,9 @@ function NavBar() {
                             <button className="nav-button">Profile</button>
                         </NavLink>
 
-
+                        {/* <NavLink to="user/avatar" className="nav-link">
+                            <button className="nav-button">Change Profile Picture</button>
+                        </NavLink> */}
                         <NavLink>
                             <button className="nav-button" onClick={handleLogoutClick}>
                                 Logout

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./App.css"
 const getQuizQuestions = async () => {
     try {
         const response = await fetch('/quiz_questions');
@@ -285,7 +286,9 @@ function NewQuestion({ movies, handleAddQuestion, questions }) {
                         {getMovieOptions()}
                     </select>
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit"
+                // className="disintegrate"
+                >Submit</button>
 
             </form>
         </div>
