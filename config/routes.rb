@@ -9,6 +9,15 @@ Rails.application.routes.draw do
   patch "/me", to: "users#update"
 
   get '/users/:id/quiz_scores', to: 'quizzes#quiz_scores'
+  # get '/quizzes/quiz_scores', to: 'quizzes#quiz_scores'
+
+  # get '/users/:id/quiz_scores', to: 'users#quiz_scores'
+  # patch '/users/:id/quiz_scores', to: 'users#update_quiz_scores'
+  # patch '/quizzes/:id', to: 'quizzes#update_quiz_scores'
+  patch '/users/:id/quiz_scores', to: 'quizzes#update_quiz_scores'
+
+  patch "/quiz_questions/:id", to: "quiz_questions#update"
+
 
   resources :movies
   # get "/movies", to: "movies#index"

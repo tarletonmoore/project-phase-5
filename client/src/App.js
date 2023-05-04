@@ -17,7 +17,8 @@ function App() {
   const [movies, setMovies] = useState([])
   const [quiz, setQuiz] = useState(null);
   const [questions, setQuestions] = useState([])
-  const [score, setScore] = useState(0);
+  const [quizScore, setQuizScore] = useState([]);
+  const [quizQuestions, setQuizQuestions] = useState([])
 
   useEffect(() => {
     fetch("/quizzes")
@@ -45,6 +46,12 @@ function App() {
       .then((r) => r.json())
       .then(setMovies)
     // .then(setQuiz);
+  }, []);
+
+  useEffect(() => {
+    fetch("/quiz_questions")
+      .then((r) => r.json())
+      .then(setQuizQuestions);
   }, []);
 
   function handleAddMovie(newMovie) {
@@ -78,8 +85,18 @@ function App() {
   }
 
   function handleQuizScore(newScore) {
-    setScore(newScore);
+    setQuizScore(newScore);
   }
+  // function handleQuizScore(updatedScoreObj) {
+  //   const updatedScores = quiz.map((q) => {
+  //     if (q.id === updatedScoreObj.id) {
+  //       return updatedScoreObj;
+  //     } else {
+  //       return q;
+  //     }
+  //   });
+  //   setQuizScore(updatedScores);
+  // }
 
   if (!user) return <Login onLogin={setUser} />;
 
@@ -99,7 +116,8 @@ function App() {
           <Routes>
             <Route exact path="/me" element={<User
               handleUpdateUser={handleUpdateUser}
-              quizScore={score}
+              quizScore={quizScore}
+              setQuizScore={setQuizScore}
             />}>
 
             </Route>
@@ -122,6 +140,8 @@ function App() {
               quiz={quiz} setQuiz={setQuiz}
               questions={questions}
               handleQuizScore={handleQuizScore}
+              quizScore={quizScore} setQuizScore={setQuizScore}
+              quizQuestions={quizQuestions} setQuizQuestions={setQuizQuestions}
             // user={user} 
             />}>
 

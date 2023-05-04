@@ -71,16 +71,24 @@ class UsersController < ApplicationController
         end
       end
       
-    #   def quiz_results
-    #     current_user = User.find_by(id: session[:user_id])
-    #     quizzes = current_user.quizzes.includes(:questions)
-    #     results = quizzes.map do |quiz|
-    #       { id: quiz.id,  result: quiz.result }
-    #     end
-    #     render json: { results: results }
-    #   end
+      def quiz_scores
+        current_user = User.find_by(id: session[:user_id])
+       quiz_scores = current_user.quizzes.pluck(:result)
+       render json: { quiz_scores: quiz_scores }
+   end
       
-   
+#    def update_quiz_scores
+#     current_user = User.find_by(id: session[:user_id])
+#     if current_user
+#     quiz_scores = current_user.quizzes.result || {}
+#         quiz_scores[:result] = params[:result]
+#         current_user.update(quiz_scores: quiz_scores)
+#         render json: current_user
+#     else
+#         render json: { errors: ["Not Authorized"] }, status: :unauthorized
+#       end
+#       end
+        
   
     private
   

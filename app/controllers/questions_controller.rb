@@ -6,8 +6,8 @@ class QuestionsController < ApplicationController
     #   render json: questions, include: [:movie, :quiz]
     
     
-        questions = Question.includes(:quizzes, :movie).all
-        render json: questions, include: [:quizzes, :movie]
+        questions = Question.includes(:quizzes, :movie, :quiz_questions).all
+        render json: questions, include: [:quizzes, :movie, :quiz_questions]
       
       
     end
@@ -15,7 +15,7 @@ class QuestionsController < ApplicationController
     def show
         question = Question.find_by(id: params[:id])
         if question
-        render json: question, include: [:movie, :quizzes]
+        render json: question, include: [:movie, :quizzes, :quiz_questions]
         else
             render json: { error: "Review not found" }, status: :not_found
         end

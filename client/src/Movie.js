@@ -54,7 +54,7 @@ import React, { useState, useEffect } from "react";
 import StartQuizButton from "./StartQuizButton";
 import Quiz from "./Quiz";
 
-function Movie({ movie, user, quiz, setQuiz, randomQuestions, handleQuizScore }) {
+function Movie({ movie, user, quiz, setQuiz, randomQuestions, handleQuizScore, quizScore, setQuizScore, quizQuestions, setQuizQuestions }) {
     console.log("randomQuestions:", randomQuestions);
     const [quizStarted, setQuizStarted] = useState(false);
     const [movieQuestions, setMovieQuestions] = useState([]);
@@ -78,7 +78,10 @@ function Movie({ movie, user, quiz, setQuiz, randomQuestions, handleQuizScore })
             <p>Plot: {movie.plot}</p>
             <p>Number of questions: {questionCount}</p>
             {quizStarted ? (
-                <Quiz questions={movieQuestions} handleQuizScore={handleQuizScore} />
+                <Quiz questions={movieQuestions} handleQuizScore={handleQuizScore}
+                    setQuizScore={setQuizScore} quizQuestions={quizQuestions} setQuizQuestions={setQuizQuestions}
+                    quiz={quiz}
+                />
             ) : (
                 movieQuestions.length > 0 && (
                     <StartQuizButton onStartQuiz={handleStartQuiz} />

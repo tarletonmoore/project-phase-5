@@ -4,7 +4,7 @@ class QuizzesController < ApplicationController
   
 def index
 quizzes = Quiz.all
-render json: quizzes, include: [:questions]
+render json: quizzes, include: [:questions, :quiz_questions]
 end
 # def index
 #     current_user = User.find_by(id: session[:user_id])
@@ -99,6 +99,36 @@ end
        quiz_scores = current_user.quizzes.pluck(:result)
        render json: { quiz_scores: quiz_scores }
    end
+# def quiz_scores
+#     user = User.find(params[:id])
+#     quiz_scores = user.quizzes.pluck(:result)
+#     render json: { quiz_scores: quiz_scores }
+#   end
+  
+
+#    def update_quiz_scores
+#     current_user = User.find_by(id: session[:user_id])
+#     quiz = current_user.quizzes.find(params[:id])
+#     quiz.result = params[:result]
+
+#     if quiz.save
+#       render json: quiz
+#     else
+#       render json: { errors: quiz.errors.full_messages }, status: :unprocessable_entity
+#     end
+#   end
+  
+  def update_quiz_scores
+    current_user = User.find_by(id: session[:user_id])
+    quiz_score = current_user.quizzes.find_by(id: params[:id])
+    
+    if quiz_score.update(result: params[:result])
+      render json: quiz_score
+    else
+      render json: { errors: quiz_score.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+  
 
     private
   
